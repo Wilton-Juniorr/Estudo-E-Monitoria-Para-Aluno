@@ -1,8 +1,8 @@
-#include <stdio.h>
+#include <stdio.h> //Bibliotecas
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
-
+//Estruturas para armazenar informacoes
 typedef struct{
 char Nome[60];
 char Matricula[12];
@@ -40,21 +40,23 @@ void Linha(){
 
 
 void CadAluno(Aluno *aluno){
-int contstring;
+int contstring; 
 
 do{
 printf("Digite seu Nome:\n");
-getchar();
-fgets(aluno ->Nome, 60, stdin);
-contstring = strlen(aluno ->Nome);
+getchar(); //tirar o buffer do teclado
+fgets(aluno ->Nome, 60, stdin); //ler oque foi digitado
+contstring = strlen(aluno ->Nome); //ler o tamanho da string
 if(contstring <= 1){
     printf("Invalido!!DIGITE SEU NOME.\n");
 }
-aluno ->Nome [strcspn(aluno ->Nome, "\n")] = '\0';
-}while(contstring <= 1);
+aluno ->Nome [strcspn(aluno ->Nome, "\n")] = '\0'; //remove a nova linha no final da string
+}while(contstring <= 1); //tem que ter no minimo 1 caractere
 Sleep(750);
 system("cls");
 
+
+//Matricula sempre tera 10 caracteres
 do{
 printf("Digite seua Matricula:\n");
 getchar();
@@ -103,7 +105,7 @@ system("cls");
 
 for(int i = 0; i < aluno ->QuantDisciplina; i++){
 do{
-printf("Digite as Disciplinas:\n");
+printf("Digite as Disciplinas: %d\n", i + 1);
 getchar();
 fgets(aluno ->Disciplina[i], 50, stdin);
 contstring = strlen(aluno ->Disciplina[i]);
@@ -125,25 +127,29 @@ printf("Caracteres Insulficientes!!TENTE NOVAMENTE.\n");
 }
 aluno ->Email[strcspn(aluno ->Email, "\n")] = '\0';
 }while(contstring <= 3);
-
+Sleep(750);
 printf("Cadastrando Aluno...\n");
 Sleep(2000);
 printf("Cadastrado com Sucesso.\n");
 Sleep(1500);
 
-FILE *Alunotxt = fopen(aluno ->Matricula, 'M');
+system("pause");
+system("cls");
 
-fprintf(Alunotxt, "Nome: %s\n", aluno ->Nome);
+//Cria e abre um arquivo txt com o nome do aluno (matricula)
+FILE *Alunotxt = fopen(aluno ->Matricula ,"M");
+
+fprintf(Alunotxt, "Nome: %s\n", aluno ->Nome); //funcao fprintf serve para escrever o nome do aluno no arquivo
 fprintf(Alunotxt, "Matricula: %s\n", aluno ->Matricula);
 fprintf(Alunotxt, "Curso: %s\n", aluno ->Curso);
 fprintf(Alunotxt, "Periodo: %d\n", aluno ->Periodo);
 fprintf(Alunotxt, "Quantidade de Disciplina: %d\n", aluno ->QuantDisciplina);
 for(int i = 0; i < aluno ->QuantDisciplina; i++){
-fprintf(Alunotxt, "Disciplina: %s\n", i + 1, aluno ->Disciplina[i]);
+fprintf(Alunotxt, "Disciplina %d: %s\n", i + 1, aluno ->Disciplina[i]);
 }
 fprintf(Alunotxt, "Email: %s\n", aluno ->Email);
 
-fclose(Alunotxt);
+fclose(Alunotxt); //Fecha do arquivo
 
  
     FILE *NomeAlunotxt = fopen("CadastroAluno.txt","a"); 
@@ -154,7 +160,7 @@ fclose(Alunotxt);
     fprintf(NomeAlunotxt, "Periodo: %d\n", aluno ->Periodo);
     fprintf(NomeAlunotxt, "Quantidade de Disciplina: %d\n", aluno ->QuantDisciplina);
     for(int i=0; i < aluno ->QuantDisciplina; i++){
-    fprintf(NomeAlunotxt, "Disciplina: %s\n", aluno ->Disciplina);
+    fprintf(NomeAlunotxt, "Disciplina %d: %s\n", i + 1, aluno ->Disciplina[i]);
     fprintf(NomeAlunotxt, "Email: %s\n", aluno ->Email);
 
     }

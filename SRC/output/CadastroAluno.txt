@@ -1,0 +1,9 @@
+Nome: Wilton Junior
+Matricula: 234567890
+Curso: ds
+Periodo: 1
+Quantidade de Disciplina: 2
+Disciplina 1: bc1
+Email: este@gmail.com
+Disciplina 2: bc2
+Email: este@gmail.com
