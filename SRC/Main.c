@@ -6,11 +6,13 @@
 
 int main(){
     Aluno aluno;
+    Cronograma cronograma;
     int op;
     do{
         Linha();
         printf("\tMenu de Opcoes:\n");
         printf("1.Cadastro do Aluno:\n");
+        printf("2.Cronograma de Estudo:\n");
         printf("0.Sair do Programa:\n");
         Linha();
         scanf("%d", &op);
@@ -18,6 +20,10 @@ int main(){
         switch(op){
             case 1:{
                 CadAluno(&aluno);
+                break;
+            }
+            case 2:{
+                CronogramaEstudo(&cronograma);
                 break;
             }
             case 0:{

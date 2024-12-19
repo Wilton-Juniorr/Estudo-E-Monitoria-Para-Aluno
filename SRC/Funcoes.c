@@ -126,6 +126,64 @@ printf("Caracteres Insulficientes!!TENTE NOVAMENTE.\n");
 aluno ->Email[strcspn(aluno ->Email, "\n")] = '\0';
 }while(contstring <= 3);
 
-Sleep(750);
-system("cls");
+printf("Cadastrando Aluno...\n");
+Sleep(2000);
+printf("Cadastrado com Sucesso.\n");
+Sleep(1500);
+
+FILE *Alunotxt = fopen(aluno ->Matricula, 'M');
+
+fprintf(Alunotxt, "Nome: %s\n", aluno ->Nome);
+fprintf(Alunotxt, "Matricula: %s\n", aluno ->Matricula);
+fprintf(Alunotxt, "Curso: %s\n", aluno ->Curso);
+fprintf(Alunotxt, "Periodo: %d\n", aluno ->Periodo);
+fprintf(Alunotxt, "Quantidade de Disciplina: %d\n", aluno ->QuantDisciplina);
+for(int i = 0; i < aluno ->QuantDisciplina; i++){
+fprintf(Alunotxt, "Disciplina: %s\n", i + 1, aluno ->Disciplina[i]);
+}
+fprintf(Alunotxt, "Email: %s\n", aluno ->Email);
+
+fclose(Alunotxt);
+
+ 
+    FILE *NomeAlunotxt = fopen("CadastroAluno.txt","a"); 
+
+    fprintf(NomeAlunotxt, "Nome: %s\n", aluno ->Nome);
+    fprintf(NomeAlunotxt, "Matricula: %s\n", aluno ->Matricula);
+    fprintf(NomeAlunotxt, "Curso: %s\n", aluno ->Curso);
+    fprintf(NomeAlunotxt, "Periodo: %d\n", aluno ->Periodo);
+    fprintf(NomeAlunotxt, "Quantidade de Disciplina: %d\n", aluno ->QuantDisciplina);
+    for(int i=0; i < aluno ->QuantDisciplina; i++){
+    fprintf(NomeAlunotxt, "Disciplina: %s\n", aluno ->Disciplina);
+    fprintf(NomeAlunotxt, "Email: %s\n", aluno ->Email);
+
+    }
+    fclose(NomeAlunotxt);
+}
+
+
+void CronogramaEstudo(Cronograma *cronograma){
+    int contstring;
+    do{
+        printf("Digite as Disciplinas:\n");
+        scanf("%d", &cronograma ->QuantDisciplina);
+        if(cronograma ->QuantDisciplina < 1 || cronograma ->QuantDisciplina > 10){
+            printf("Quantidade MAX 10.\n");
+        }
+    }while(cronograma ->QuantDisciplina < 1 || cronograma ->QuantDisciplina > 10);
+for(int i= 0; i < cronograma ->QuantDisciplina; i++){
+    do{
+        printf("Digite as Disciplinas:\n");
+        getchar();
+        fgets(cronograma ->Disciplina[i], 50, stdin);
+        contstring = strlen(cronograma ->Disciplina[i]);
+        if(contstring <= 3){
+            printf("Quantidade Minima de caracteres insulficientes!TENTE NOVAMENTE\n");
+        }
+        cronograma ->Disciplina[i][strcspn(cronograma ->Disciplina[i], "\n")] = '\0';
+    }while(contstring <= 3);
+    }
+    Sleep(750);
+    system("cls");
+
 }
